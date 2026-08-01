@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CorsairConnect — Transformons nos déchets plastiques en ressource</title>
+<style>
+  :root{
+    --bg:#1a1a2e;
+    --surface:#16213e;
+    --border:#2a2a4a;
+    --volt:#e8ff47;
+    --volt-dim:rgba(232,255,71,0.12);
+    --text:#f0f0f0;
+    --muted:#8888aa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI',Arial,sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 20px 60px;}
+  .section{display:none;animation:fade .4s ease;}
+  .section.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+  /* HERO */
+  .hero-img{width:100%;display:block;}
+  .hero-body{padding:28px 20px 10px;text-align:center;}
+  .hero-body p.tag{
+    color:var(--muted);font-size:14px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px;
+  }
+  h1{font-size:22px;margin-bottom:10px;}
+  h2{font-size:19px;margin-bottom:14px;}
+  p{color:var(--muted);font-size:15px;margin-bottom:16px;}
+  .btn{
+    display:inline-block;background:var(--volt);color:#111;font-weight:700;
+    padding:14px 28px;border:none;border-radius:8px;font-size:16px;cursor:pointer;
+    width:100%;text-align:center;
+  }
+  .btn:active{transform:scale(.98);}
+  .btn-secondary{
+    background:transparent;color:var(--volt);border:1px solid var(--volt);
+  }
+  .center{padding:0 20px;text-align:center;}
+
+  /* VIDEO */
+  .video-wrap{
+    position:relative;width:100%;padding-top:177.77%; /* 9:16 shorts */
+    background:#000;border-radius:12px;overflow:hidden;margin-bottom:20px;
+    border:1px solid var(--border);
+  }
+  .video-wrap.wide{padding-top:56.25%;} /* 16:9 for regular videos */
+  .video-wrap iframe{
+    position:absolute;top:0;left:0;width:100%;height:100%;border:0;
+  }
+
+  /* FORM */
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:24px 20px;margin:20px 0;
+  }
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;margin-top:14px;}
+  input[type=text],input[type=email]{
+    width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--border);
+    border-radius:8px;color:var(--text);font-size:15px;
+  }
+  input:focus{outline:none;border-color:var(--volt);}
+  .status{font-size:13px;color:var(--muted);text-align:center;margin-top:12px;min-height:18px;}
+
+  .steps{display:flex;justify-content:center;gap:8px;margin:18px 0 8px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--border);}
+  .dot.active{background:var(--volt);}
+
+  .videos-title{text-align:center;margin-bottom:6px;}
+  .next-step{
+    background:var(--volt-dim);border:1px solid var(--volt);border-radius:10px;
+    padding:16px;margin-top:24px;font-size:14px;color:var(--text);
+  }
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- STEP 1 : HERO -->
+  <section id="step-hero" class="section active">
+    <img class="hero-img" src="hero.jpg" alt="Transformons nos déchets plastiques en ressource">
+    <div class="hero-body">
+      <p class="tag">Corsair · Pour un avenir sans plastique</p>
+      <h1>Et vous ? Vous êtes concerné ?</h1>
+      <p>Découvrez comment CorsairConnect transforme les déchets plastiques en ressource — et comment vous pouvez y participer.</p>
+      <button class="btn" onclick="goTo('step-video1')">Découvrir l'économie circulaire</button>
+    </div>
+  </section>
+
+  <!-- STEP 2 : VIDEO SHORTS (teaser) -->
+  <section id="step-video1" class="section">
+    <div class="center" style="padding-top:24px;">
+      <h2>60 secondes pour comprendre</h2>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/2v0n58hr_BE" title="CorsairConnect" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="center">
+      <p>Cliquez ci-dessous pour échanger avec moi et voir comment vous pouvez participer.</p>
+      <button class="btn" onclick="goTo('step-form')">Réserver un échange</button>
+    </div>
+  </section>
+
+  <!-- STEP 3 : FORM -->
+  <section id="step-form" class="section">
+    <div class="card" style="margin-top:24px;">
+      <h2 style="text-align:center;">Réservons votre échange</h2>
+      <p style="text-align:center;margin-bottom:0;">Entrez votre prénom, votre email et votre téléphone pour passer à la réservation de votre créneau.</p>
+      <form id="leadForm" onsubmit="return submitLead(event)">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <label for="telephone">Téléphone</label>
+        <input type="tel" id="telephone" required>
+        En soumettant ce formulaire, j'accepte d'être recontacté(e) par CorsairConnect par email et téléphone. Mes données ne sont utilisées que dans ce cadre et ne sont ni vendues ni partagées avec des tiers. [Politique de confidentialité](/corsairconnect/confidentialite)
+        <button type="submit" class="btn" style="margin-top:22px;">Continuer</button>
+        <div class="status" id="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- STEP 4 : BOOK A SLOT -->
+  <section id="step-videos" class="section">
+    <div class="videos-title" style="padding-top:24px;">
+      <h2>Merci ! Bloquons un créneau</h2>
+    </div>
+    <p style="text-align:center;">La prochaine étape : réserver 30 minutes avec moi pour répondre à toutes vos questions et voir ensemble comment vous pouvez participer.</p>
+    <div class="center">
+      <a class="btn" href="https://calendly.com/badierjf/30min" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">Réserver mon créneau</a>
+    </div>
+
+    <div class="next-step">
+      <strong>Avant notre rendez-vous</strong><br>
+      Je vous propose de découvrir tout le concept CorsairConnect en 4 vidéos, sur <a href="https://csr-connect.online" target="_blank" rel="noopener" style="color:var(--volt);">csr-connect.online</a>. Vous arriverez à l'appel avec toutes les bases, et on pourra aller droit à l'essentiel.
+    </div>
+  </section>
+
+</div>
+
+<footer>CorsairConnect — Pour un avenir sans plastique [Politique de confidentialité](/corsairconnect/confidentialite) · [Mentions légales](/corsairconnect/mentions-legales) </footer>
+
+<script>
+  // ⚠️ Remplacer par l'URL du webhook Google Apps Script une fois déployé
+  const WEBHOOK = "https://script.google.com/macros/s/AKfycbyLDZsXHON6s8v1_PqpF8XB8qnQDeP9NCefX2vmrXz5-PukQY32F6m3JxY7o21LUFp3uw/exec";
+
+  function goTo(id){
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  async function submitLead(e){
+    e.preventDefault();
+    const prenom = document.getElementById('prenom').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const telephone = document.getElementById('telephone').value.trim();
+    const status = document.getElementById('status');
+
+    if(!email || !telephone){ status.textContent = "Merci de renseigner votre email et votre téléphone."; return false; }
+
+    status.textContent = "Envoi en cours...";
+
+    const params = new URLSearchParams({ prenom, email, telephone });
+    const url = WEBHOOK + '?' + params.toString();
+
+    await new Promise((resolve) => {
+      const img = new Image();
+      img.onload = img.onerror = resolve;
+      img.src = url;
+      setTimeout(resolve, 5000);
+    });
+
+    status.textContent = "✓ Merci !";
+    setTimeout(() => goTo('step-videos'), 600);
+    return false;
+  }
+</script>
+
+</body>
+</html>

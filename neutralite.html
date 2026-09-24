@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculateur de neutralité plastique</title>
+<title>Neutralité plastique : ta part, calculée et prouvée</title>
+<meta name="description" content="Je suis devenu allergique aux grandes promesses sur la planète. Alors je te montre : combien, où, par qui, et ce que devient le plastique.">
 <style>
   :root{
     --bg:#ffffff;
@@ -11,82 +12,92 @@
     --border:#e3e5df;
     --navy:#1d2b45;
     --green:#4f7d52;
-    --terracotta:#c8703f;
     --text:#1a1a1a;
     --muted:#5c5c5c;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Segoe UI',Arial,sans-serif;
-    line-height:1.5;
-  }
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;line-height:1.55;}
   .wrap{max-width:640px;margin:0 auto;padding:0 20px 60px;}
+  img{max-width:100%;display:block;}
 
-  .hero-body{padding:40px 20px 4px;text-align:center;}
-  .hero-body p.tag{
-    color:var(--muted);font-size:14px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px;
-  }
-  h1{font-size:22px;margin-bottom:6px;color:var(--navy);}
-  h2{font-size:16px;font-weight:400;margin-bottom:14px;color:var(--muted);}
-  p{color:var(--muted);font-size:15px;margin-bottom:16px;}
+  .hero{padding:48px 0 8px;}
+  .hero p{font-size:20px;line-height:1.45;color:var(--navy);margin-bottom:6px;}
+  .hero p.strong{font-weight:700;font-size:22px;margin-bottom:22px;}
+  .hero p.facts{font-size:17px;color:var(--text);}
+
+  h2{font-size:21px;color:var(--navy);margin:44px 0 16px;line-height:1.3;}
+  p{color:var(--muted);font-size:16px;margin-bottom:14px;}
+  p.dark{color:var(--text);}
 
   .btn{
-    display:inline-block;background:var(--green);color:#fff;font-weight:700;
+    display:block;background:var(--green);color:#fff;font-weight:700;
     padding:14px 28px;border:none;border-radius:8px;font-size:16px;cursor:pointer;
-    width:100%;text-align:center;text-decoration:none;
+    width:100%;text-align:center;text-decoration:none;font-family:inherit;
   }
   .btn:active{transform:scale(.98);}
-  .center{padding:0 20px 8px;text-align:center;}
+  .btn:focus-visible,input:focus-visible{outline:2px solid var(--navy);outline-offset:2px;}
 
-  /* CALCULATEUR */
-  .calc-card{
-    background:var(--surface);border:1px solid var(--border);border-radius:12px;
-    padding:24px 20px;margin:24px 0;
-  }
-  .field{margin-bottom:18px;}
-  .field label{
-    display:block;font-size:13px;font-weight:700;color:var(--navy);
-    text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;
-  }
-  .field input{
-    width:100%;padding:12px 14px;font-size:18px;border:1px solid var(--border);
-    border-radius:8px;background:#fff;color:var(--text);
-  }
-  .field input:focus{outline:2px solid var(--green);outline-offset:1px;}
+  /* Calculateur */
+  .calc-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 20px;margin:24px 0 10px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+  .field input{width:100%;padding:12px 14px;font-size:18px;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--text);font-family:inherit;}
   .field .hint{color:var(--muted);font-size:13px;margin-top:6px;}
+  .result{border-top:1px solid var(--border);margin-top:18px;padding-top:14px;}
+  .result-row{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;font-size:15px;color:var(--muted);}
+  .result-row strong{color:var(--text);}
+  .result-final{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 4px;border-top:1px dashed var(--border);margin-top:6px;}
+  .result-final .label{font-size:16px;color:var(--navy);font-weight:700;}
+  .result-final .value{font-size:30px;color:var(--green);font-weight:700;}
+  .result-note{font-size:14px;color:var(--muted);margin-top:10px;}
+  .timing{font-size:15px;color:var(--navy);margin-top:4px;}
+  .every-year{font-size:17px;color:var(--text);margin-top:18px;}
 
-  .result{
-    border-top:1px solid var(--border);margin-top:18px;padding-top:18px;
-  }
-  .result-row{
-    display:flex;justify-content:space-between;align-items:baseline;
-    padding:8px 0;font-size:15px;color:var(--muted);
-  }
-  .result-row strong{color:var(--text);font-weight:700;}
-  .result-final{
-    display:flex;justify-content:space-between;align-items:baseline;
-    padding:14px 0 4px;border-top:1px dashed var(--border);margin-top:6px;
-  }
-  .result-final .label{font-size:15px;color:var(--navy);font-weight:700;}
-  .result-final .value{font-size:28px;color:var(--green);font-weight:700;}
-  .result-note{font-size:13px;color:var(--muted);margin-top:10px;}
+  /* Preuves */
+  .q{margin-bottom:30px;}
+  .q h3{font-size:18px;color:var(--navy);margin-bottom:8px;}
+  figure{margin:14px 0 6px;}
+  figure img{border-radius:10px;border:1px solid var(--border);}
+  figure.counter img{max-width:360px;}
+  figcaption{font-size:13px;color:var(--muted);margin-top:6px;}
+  a.inline{color:var(--green);font-weight:600;}
 
-  footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px;}
+  .few{background:var(--navy);color:#fff;border-radius:12px;padding:26px 22px;margin:40px 0 0;}
+  .few p{color:#e8ebf0;font-size:17px;margin-bottom:6px;}
+  .few p:last-child{margin-bottom:0;}
+
+  /* Formulaire */
+  .form-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 20px;}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .legal{font-size:12px;color:var(--muted);margin-top:12px;}
+  .legal a{color:var(--muted);}
+  .msg{font-size:15px;margin-top:12px;}
+  .msg.err{color:#a33;}
+  #done{display:none;}
+  #done p{color:var(--text);}
+
+  .closing{margin-top:40px;}
+
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 20px 10px;}
   footer a{color:var(--muted);}
+
+  @media (prefers-reduced-motion: reduce){ .btn:active{transform:none;} }
 </style>
 </head>
 <body>
 
 <div class="wrap">
 
-  <div class="hero-body">
-    <p class="tag">Neutralité plastique</p>
-    <h1>Un homme produit 50 kg de déchets plastiques par an.</h1>
-    <h2>Un pack à 100 € retire 250 kg de plastique réel, mesuré, tracé. Soit 5 ans de neutralité. Entre ton âge, on calcule le reste.</h2>
+  <!-- OUVERTURE -->
+  <div class="hero">
+    <p>Je suis devenu allergique aux grandes promesses sur la planète.</p>
+    <p class="strong">Alors je ne vais pas t'en faire. Je vais te montrer.</p>
+    <p class="facts">Tu produis environ 50 kg de plastique par an.<br>
+    Un pack de 100 € finance le retrait de 250 kg.<br>
+    Entre ton âge. On calcule ta part.</p>
   </div>
 
+  <!-- CALCULATEUR -->
   <div class="calc-card">
     <div class="field">
       <label for="age">Ton âge</label>
@@ -94,43 +105,118 @@
       <div class="hint">Espérance de vie moyenne retenue : 80 ans.</div>
     </div>
 
-    <div class="result" id="result" style="display:none;">
-      <div class="result-row"><span>Années restantes à couvrir</span><strong id="years"></strong></div>
-      <div class="result-row"><span>Déchets plastiques à venir</span><strong id="kg"></strong></div>
+    <div class="result" id="result" style="display:none;" aria-live="polite">
+      <div class="result-row"><span>Années restantes</span><strong id="years"></strong></div>
+      <div class="result-row"><span>Plastique à venir</span><strong id="kg"></strong></div>
+      <div class="result-row"><span>Packs</span><strong id="packs"></strong></div>
       <div class="result-final">
-        <span class="label">Packs nécessaires</span>
-        <span class="value" id="packs"></span>
+        <span class="label">Ta part</span>
+        <span class="value" id="cost"></span>
       </div>
-      <div class="result-row"><span>Coût total</span><strong id="cost"></strong></div>
       <div class="result-note" id="note"></div>
+    </div>
+    <p class="timing">5 % retirés tout de suite. Le reste sur deux ans.</p>
+  </div>
+
+  <p class="every-year">Chaque année qui passe, c'est 50 kg de plus. Ils ne disparaissent pas. Ils vont quelque part.</p>
+
+  <!-- PREUVES -->
+  <h2>Les questions que je me suis posées avant toi</h2>
+
+  <div class="q">
+    <h3>Combien ?</h3>
+    <p class="dark">Voilà mon compteur. 473 kg financés. 24 kg déjà retirés, les 5 % du départ. Le reste est traité sur deux ans. Ce n'est pas instantané. C'est une usine, pas une baguette magique. Mais je vois chaque kilo passer.</p>
+    <figure class="counter">
+      <img src="compteur.jpg" alt="Mon compteur personnel : 473 kg financés, 24 kg déjà retirés, 449 kg restants." loading="lazy">
+      <figcaption>Mon compteur, mis à jour le 24 septembre 2026.</figcaption>
+    </figure>
+  </div>
+
+  <div class="q">
+    <h3>Où ?</h3>
+    <p class="dark">À Nonthaburi, à côté de Bangkok. Et une autre unité en Finlande.</p>
+    <figure>
+      <img src="finlande.jpg" alt="Le site Corsair en Finlande, vu du ciel, au bord d'un lac." loading="lazy">
+      <figcaption>Le site Corsair en Finlande.</figcaption>
+    </figure>
+  </div>
+
+  <div class="q">
+    <h3>Par qui ?</h3>
+    <p class="dark">Corsair. Je les suis depuis 2019. J'ai attendu sept ans avant de m'engager.</p>
+  </div>
+
+  <div class="q">
+    <h3>Et ensuite ?</h3>
+    <p class="dark">Le plastique devient de l'huile de pyrolyse. Pas pour être brûlée. Pour refaire du plastique sans repartir du pétrole. L'usine publie ses données.</p>
+    <p><a class="inline" href="https://stnsm.org/pyrolysis-oil-for-material-use/" target="_blank" rel="noopener">Lire la fiche publiée par l'usine de Bangkok</a></p>
+  </div>
+
+  <div class="few">
+    <p>On n'est pas des milliers.</p>
+    <p>On est une poignée à le faire pour de vrai.</p>
+    <p>Chaque kilo financé compte. Chaque personne aussi.</p>
+  </div>
+
+  <!-- QUI JE SUIS -->
+  <h2>Qui je suis</h2>
+  <p class="dark">Jean-François. 40 ans en informatique, 30 ans en marketing de réseau. Je me suis déjà fait avoir par de belles promesses. Maintenant je vérifie. Et je ne parle que de ce que j'ai vérifié.</p>
+
+  <!-- FORMULAIRE -->
+  <h2>Envie d'en parler ?</h2>
+  <div class="form-card">
+    <div id="formWrap">
+      <p class="dark">Laisse-moi ton prénom et ton email. Je te réponds moi-même.</p>
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="telephone">Téléphone (facultatif)</label>
+          <input type="tel" id="telephone" name="telephone" autocomplete="tel">
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="website">Ne pas remplir</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="btn" id="submitBtn">Être recontacté</button>
+        <p class="msg" id="msg" role="status"></p>
+        <p class="legal">En envoyant ce formulaire, tu acceptes que je te recontacte. Voir la <a href="/corsairconnect/confidentialite">politique de confidentialité</a>.</p>
+      </form>
+    </div>
+    <div id="done">
+      <p>C'est noté, je reviens vers toi. Si tu préfères choisir ton créneau tout de suite :</p>
+      <a class="btn" id="calendlyBtn" href="https://calendly.com/badierjf/30min" target="_blank" rel="noopener">Réserver un échange</a>
     </div>
   </div>
 
-  <div class="center">
-    <p>Ces packs ne sont que des éléments d'une communauté compensée : chacun finance un peu, et ensemble on retire vraiment le plastique du monde.</p>
-    <a class="btn" href="https://calendly.com/badierjf/30min" target="_blank" rel="noopener">Réserver un échange</a>
-  </div>
+  <p class="closing">Ces packs ne sont que des éléments d'une communauté compensée : chacun finance un peu, et ensemble on retire vraiment le plastique du monde.</p>
 
 </div>
 
-<footer>Transformer la planète — Pour un avenir sans plastique · <a href="/corsairconnect/confidentialite">Politique de confidentialité</a> · <a href="/corsairconnect/mentions-legales">Mentions légales</a></footer>
+<footer>Transformer la planète, pour un avenir sans plastique. <a href="/corsairconnect/confidentialite">Politique de confidentialité</a> · <a href="/corsairconnect/mentions-legales">Mentions légales</a></footer>
 
 <script>
   const KG_PAR_AN = 50;
   const KG_PAR_PACK = 250;
   const PRIX_PACK = 100;
   const ESPERANCE_VIE = 80;
+  const WEBHOOK = 'https://script.google.com/macros/s/AKfycbw3R3__BWsSfFcY7BAQ3xWJ97_ZnJ8n1EcWROJyONEkSzCySEWBmRBhDmZU4NTv3ue4-Q/exec';
+  const CALENDLY = 'https://calendly.com/badierjf/30min';
+
+  let calc = { age:'', kg:'', packs:'' };
 
   const ageInput = document.getElementById('age');
   const result = document.getElementById('result');
 
   ageInput.addEventListener('input', () => {
     const age = parseInt(ageInput.value, 10);
-
-    if (!age || age <= 0) {
-      result.style.display = 'none';
-      return;
-    }
+    if (!age || age <= 0) { result.style.display = 'none'; calc = { age:'', kg:'', packs:'' }; return; }
 
     if (age >= ESPERANCE_VIE) {
       result.style.display = 'block';
@@ -139,23 +225,67 @@
       document.getElementById('packs').textContent = '0';
       document.getElementById('cost').textContent = '0 €';
       document.getElementById('note').textContent = "Au-delà de l'espérance de vie moyenne retenue (80 ans), le calcul ne s'applique plus.";
+      calc = { age: age, kg: 0, packs: 0 };
       return;
     }
 
-    const anneesRestantes = ESPERANCE_VIE - age;
-    const kgRestants = anneesRestantes * KG_PAR_AN;
+    const annees = ESPERANCE_VIE - age;
+    const kgRestants = annees * KG_PAR_AN;
     const packs = Math.ceil(kgRestants / KG_PAR_PACK);
     const cout = packs * PRIX_PACK;
     const kgCouverts = packs * KG_PAR_PACK;
 
     result.style.display = 'block';
-    document.getElementById('years').textContent = anneesRestantes + ' ans';
+    document.getElementById('years').textContent = annees + ' ans';
     document.getElementById('kg').textContent = kgRestants.toLocaleString('fr-FR') + ' kg';
     document.getElementById('packs').textContent = packs;
     document.getElementById('cost').textContent = cout.toLocaleString('fr-FR') + ' €';
     document.getElementById('note').textContent =
-      packs + ' pack' + (packs > 1 ? 's' : '') + ' retire' + (packs > 1 ? 'nt' : '') + ' ' +
-      kgCouverts.toLocaleString('fr-FR') + ' kg — de quoi être neutre en plastique pour le reste de ta vie.';
+      packs + ' pack' + (packs > 1 ? 's financent' : ' finance') + ' le retrait de ' +
+      kgCouverts.toLocaleString('fr-FR') + ' kg. De quoi couvrir le reste de ta vie.';
+    calc = { age: age, kg: kgRestants, packs: packs };
+  });
+
+  const form = document.getElementById('leadForm');
+  const msg = document.getElementById('msg');
+  const btn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = ''; msg.className = 'msg';
+
+    if (form.website.value) return; // robot
+
+    const prenom = form.prenom.value.trim();
+    const email = form.email.value.trim();
+    const telephone = form.telephone.value.trim();
+
+    if (!prenom) { msg.textContent = 'Indique ton prénom.'; msg.className = 'msg err'; form.prenom.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = 'Vérifie ton adresse email.'; msg.className = 'msg err'; form.email.focus(); return; }
+
+    btn.disabled = true; btn.textContent = 'Envoi…';
+
+    const data = new URLSearchParams({
+      prenom: prenom,
+      email: email,
+      telephone: telephone,
+      neutralite: calc.kg,
+      age: calc.age,
+      packs: calc.packs,
+      source: 'jfbteam-ma-mission.fr'
+    });
+
+    try {
+      await fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', body: data });
+      const url = CALENDLY + '?name=' + encodeURIComponent(prenom) + '&email=' + encodeURIComponent(email);
+      document.getElementById('calendlyBtn').href = url;
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('done').style.display = 'block';
+    } catch (err) {
+      msg.textContent = "L'envoi n'est pas passé. Vérifie ta connexion et réessaie.";
+      msg.className = 'msg err';
+      btn.disabled = false; btn.textContent = 'Être recontacté';
+    }
   });
 </script>
 

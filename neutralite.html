@@ -163,11 +163,15 @@
   <p class="dark">Jean-François. 40 ans en informatique, 30 ans en marketing de réseau. Je me suis déjà fait avoir par de belles promesses. Maintenant je vérifie. Et je ne parle que de ce que j'ai vérifié.</p>
 
   <!-- FORMULAIRE -->
-  <h2>Envie d'en parler ?</h2>
+  <h2 id="contact">Envie d'en parler ?</h2>
   <div class="form-card">
     <div id="formWrap">
-      <p class="dark">Laisse-moi ton prénom et ton email. Je te réponds moi-même.</p>
+      <p class="dark">Laisse-moi tes coordonnées. Je t'emmène tout de suite vers les vidéos où j'explique tout. Ensuite, si tu veux, on en parle : rendez-vous ou WhatsApp, c'est toi qui choisis.</p>
       <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" autocomplete="family-name" required>
+        </div>
         <div class="field">
           <label for="prenom">Prénom</label>
           <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
@@ -184,14 +188,14 @@
           <label for="website">Ne pas remplir</label>
           <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
         </div>
-        <button type="submit" class="btn" id="submitBtn">Être recontacté</button>
+        <button type="submit" class="btn" id="submitBtn">Voir les vidéos d'explication</button>
         <p class="msg" id="msg" role="status"></p>
         <p class="legal">En envoyant ce formulaire, tu acceptes que je te recontacte. Voir la <a href="/corsairconnect/confidentialite">politique de confidentialité</a>.</p>
       </form>
     </div>
     <div id="done">
-      <p>C'est noté, je reviens vers toi. Si tu préfères choisir ton créneau tout de suite :</p>
-      <a class="btn" id="calendlyBtn" href="https://calendly.com/badierjf/30min" target="_blank" rel="noopener">Réserver un échange</a>
+      <p>C'est noté. Je t'emmène vers les vidéos…</p>
+      <a class="btn" href="https://badierjf.systeme.io/page-video-plastique-ft-9b1c5854-a2cc925a">Voir les vidéos d'explication</a>
     </div>
   </div>
 
@@ -207,7 +211,7 @@
   const PRIX_PACK = 100;
   const ESPERANCE_VIE = 80;
   const WEBHOOK = 'https://script.google.com/macros/s/AKfycbw3R3__BWsSfFcY7BAQ3xWJ97_ZnJ8n1EcWROJyONEkSzCySEWBmRBhDmZU4NTv3ue4-Q/exec';
-  const CALENDLY = 'https://calendly.com/badierjf/30min';
+  const VIDEOS = 'https://badierjf.systeme.io/page-video-plastique-ft-9b1c5854-a2cc925a';
 
   let calc = { age:'', kg:'', packs:'' };
 
@@ -256,16 +260,19 @@
 
     if (form.website.value) return; // robot
 
+    const nom = form.nom.value.trim();
     const prenom = form.prenom.value.trim();
     const email = form.email.value.trim();
     const telephone = form.telephone.value.trim();
 
+    if (!nom) { msg.textContent = 'Indique ton nom.'; msg.className = 'msg err'; form.nom.focus(); return; }
     if (!prenom) { msg.textContent = 'Indique ton prénom.'; msg.className = 'msg err'; form.prenom.focus(); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = 'Vérifie ton adresse email.'; msg.className = 'msg err'; form.email.focus(); return; }
 
     btn.disabled = true; btn.textContent = 'Envoi…';
 
     const data = new URLSearchParams({
+      nom: nom,
       prenom: prenom,
       email: email,
       telephone: telephone,
@@ -277,14 +284,13 @@
 
     try {
       await fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', body: data });
-      const url = CALENDLY + '?name=' + encodeURIComponent(prenom) + '&email=' + encodeURIComponent(email);
-      document.getElementById('calendlyBtn').href = url;
       document.getElementById('formWrap').style.display = 'none';
       document.getElementById('done').style.display = 'block';
+      setTimeout(() => { window.location.href = VIDEOS; }, 1200);
     } catch (err) {
       msg.textContent = "L'envoi n'est pas passé. Vérifie ta connexion et réessaie.";
       msg.className = 'msg err';
-      btn.disabled = false; btn.textContent = 'Être recontacté';
+      btn.disabled = false; btn.textContent = 'Voir les vidéos d\'explication';
     }
   });
 </script>

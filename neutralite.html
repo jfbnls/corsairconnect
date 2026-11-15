@@ -210,7 +210,7 @@
   const KG_PAR_PACK = 250;
   const PRIX_PACK = 100;
   const ESPERANCE_VIE = 80;
-  const WEBHOOK = 'https://script.google.com/macros/s/AKfycbw3R3__BWsSfFcY7BAQ3xWJ97_ZnJ8n1EcWROJyONEkSzCySEWBmRBhDmZU4NTv3ue4-Q/exec';
+  const WEBHOOK = 'https://script.google.com/macros/s/AKfycbweBAhwDysBnG4ifVXIjWKnpc92dO9ZTOLtKwjf8OTYaWQLFPrfNKxGU9PyY20iUTtstg/exec';
   const VIDEOS = 'https://badierjf.systeme.io/page-video-plastique-ft-9b1c5854-a2cc925a';
 
   let calc = { age:'', kg:'', packs:'' };
@@ -279,11 +279,12 @@
       neutralite: calc.kg,
       age: calc.age,
       packs: calc.packs,
-      source: 'jfbteam-ma-mission.fr'
+      source: 'corsairconnect',
+      date: new Date().toLocaleString('fr-FR', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'})
     });
 
     try {
-      await fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', body: data });
+      await fetch(WEBHOOK + '?' + data.toString(), { method: 'GET', mode: 'no-cors' });
       document.getElementById('formWrap').style.display = 'none';
       document.getElementById('done').style.display = 'block';
       setTimeout(() => { window.location.href = VIDEOS; }, 1200);

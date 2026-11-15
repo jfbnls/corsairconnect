@@ -3,74 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Transformons nos déchets plastiques en ressource</title>
+<title>Soyons la solution, pas la pollution</title>
+<meta name="description" content="Depuis 2019 j'accompagne un projet qui transforme le plastique en carburant, en Thaïlande. Découvre ta neutralité plastique.">
+<meta property="og:title" content="Soyons la solution, pas la pollution !">
+<meta property="og:image" content="banniere.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#ffffff;
-    --surface:#f6f7f4;
-    --border:#e3e5df;
-    --navy:#1d2b45;
-    --green:#4f7d52;
-    --terracotta:#c8703f;
-    --text:#1a1a1a;
-    --muted:#5c5c5c;
+    --ocean:#0b3b66;
+    --ocean-deep:#082a4a;
+    --sky:#1e88d6;
+    --green:#3da535;
+    --green-dark:#2c7d27;
+    --lime:#d8f26b;
+    --bg:#f3f8f4;
+    --card:#ffffff;
+    --text:#14243a;
+    --muted:#4d5d70;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
   body{
     background:var(--bg);
     color:var(--text);
-    font-family:'Segoe UI',Arial,sans-serif;
-    line-height:1.5;
+    font-family:'Nunito','Segoe UI',Arial,sans-serif;
+    line-height:1.55;
   }
-  .wrap{max-width:640px;margin:0 auto;padding:0 20px 60px;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 16px;}
 
-  .hero-body{padding:40px 20px 4px;text-align:center;}
-  .hero-body p.tag{
-    color:var(--muted);font-size:14px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px;
+  /* BANNIÈRE */
+  .top{
+    background:
+      radial-gradient(circle at 15% 20%, rgba(61,165,53,.18), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(30,136,214,.20), transparent 50%),
+      #ffffff;
+    padding:24px 0 34px;
   }
-  h1{font-size:22px;margin-bottom:6px;color:var(--navy);}
-  h2{font-size:19px;margin-bottom:14px;}
-  p{color:var(--muted);font-size:15px;margin-bottom:16px;}
+  .banner{
+    display:block;border-radius:20px;overflow:hidden;
+    box-shadow:0 18px 40px -18px rgba(11,59,102,.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .banner:hover{transform:translateY(-3px);box-shadow:0 24px 50px -18px rgba(11,59,102,.55);}
+  .banner img{width:100%;height:auto;}
+
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:22px;}
   .btn{
-    display:inline-block;background:var(--green);color:#fff;font-weight:700;
-    padding:14px 28px;border:none;border-radius:8px;font-size:16px;cursor:pointer;
-    width:100%;text-align:center;text-decoration:none;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:inherit;font-weight:800;font-size:17px;text-decoration:none;
+    padding:15px 26px;border-radius:999px;min-width:260px;
+    transition:transform .15s ease, background .2s ease;
   }
-  .btn:active{transform:scale(.98);}
-  .center{padding:0 20px 8px;text-align:center;}
+  .btn:active{transform:scale(.97);}
+  .btn-green{background:var(--green);color:#fff;box-shadow:0 8px 20px -8px rgba(44,125,39,.7);}
+  .btn-green:hover{background:var(--green-dark);}
+  .btn-outline{background:#fff;color:var(--ocean);border:2px solid var(--ocean);}
+  .btn-outline:hover{background:var(--ocean);color:#fff;}
+  .btn:focus-visible{outline:3px solid var(--sky);outline-offset:3px;}
 
-  /* VIDEO */
+  /* CHIFFRES */
+  .facts{
+    background:linear-gradient(135deg,var(--ocean-deep),var(--ocean) 55%,#0f5a8f);
+    color:#fff;padding:46px 0;
+  }
+  .facts h1{
+    font-size:clamp(24px,4vw,34px);font-weight:900;line-height:1.2;text-align:center;
+    max-width:760px;margin:0 auto 10px;
+  }
+  .facts h1 em{font-style:normal;color:var(--lime);}
+  .facts h2{
+    font-size:clamp(17px,2.4vw,20px);font-weight:600;text-align:center;
+    color:#cfe3f5;max-width:700px;margin:0 auto 30px;
+  }
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .stat{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+    border-radius:16px;padding:20px 16px;text-align:center;
+  }
+  .stat .num{font-size:34px;font-weight:900;color:var(--lime);line-height:1.1;}
+  .stat .lbl{font-size:15px;color:#dbe8f4;margin-top:6px;}
+
+  /* VIDÉO + TEXTE */
+  section{padding:46px 0;}
   .video-wrap{
-    position:relative;width:100%;padding-top:56.25%; /* 16:9 */
-    background:#000;border-radius:12px;overflow:hidden;
-    margin:20px 0;border:1px solid var(--border);
+    position:relative;width:100%;padding-top:56.25%;
+    background:#000;border-radius:18px;overflow:hidden;
+    box-shadow:0 18px 40px -20px rgba(11,59,102,.5);
   }
-  .video-wrap iframe{
-    position:absolute;top:0;left:0;width:80%;height:80%;border:0;
-  }
+  .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 
-  footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 10px;}
-  footer a{color:var(--muted);}
+  .story{
+    background:var(--card);border-radius:18px;padding:28px 24px;margin-top:26px;
+    border-left:6px solid var(--green);
+    box-shadow:0 10px 30px -18px rgba(11,59,102,.35);
+  }
+  .story p{font-size:17px;color:var(--text);margin-bottom:12px;}
+  .story p.punch{font-weight:800;color:var(--green-dark);font-size:19px;margin:18px 0 0;}
+
+  /* QUI */
+  .me{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;
+      background:var(--card);border-radius:18px;padding:24px;
+      box-shadow:0 10px 30px -18px rgba(11,59,102,.35);}
+  .me img{width:180px;height:180px;object-fit:cover;object-position:top;border-radius:50%;
+          border:5px solid var(--green);}
+  .me h3{font-size:22px;font-weight:900;color:var(--ocean);margin-bottom:4px;}
+  .me .tag{display:inline-block;background:var(--lime);color:var(--ocean-deep);font-weight:800;
+           font-size:13px;padding:3px 12px;border-radius:999px;margin-bottom:10px;}
+  .me p{color:var(--muted);font-size:16px;}
+
+  .final{text-align:center;padding:10px 0 50px;}
+
+  footer{background:var(--ocean-deep);color:#a9c0d6;text-align:center;font-size:13px;padding:22px 16px;}
+  footer a{color:#d8e6f2;}
+
+  @media (max-width:640px){
+    .top{padding:16px 0 26px;}
+    .banner{border-radius:16px;}
+    .btn{width:100%;min-width:0;}
+    .stats{grid-template-columns:1fr;}
+    .stat{display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px;}
+    .stat .num{font-size:28px;min-width:112px;white-space:nowrap;}
+    .stat .lbl{margin-top:0;}
+    .me{grid-template-columns:1fr;text-align:center;}
+    .me img{margin:0 auto;width:150px;height:150px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .banner,.btn{transition:none;}
+    .banner:hover{transform:none;}
+  }
 </style>
 </head>
 <body>
 
-<div class="wrap">
-
-  <div class="hero-body">
-    <h1>460 millions de tonnes de plastique produites chaque année dans le monde.</h1>
-    <h2> Soit l'équivalent d'un camion-benne de déchets plastiques déversé toutes les minutes, dans les océans.</h2>
+<!-- BANNIÈRE -->
+<header class="top">
+  <div class="wrap">
+    <a class="banner" href="neutralite.html" aria-label="Découvre ta neutralité plastique">
+      <picture>
+        <source media="(max-width:640px)" srcset="banniere-mobile.jpg">
+        <img src="banniere.jpg" width="1536" height="1024"
+             alt="Jean-François pointe du doigt : Soyons la solution, pas la pollution ! Découvre ta neutralité plastique.">
+      </picture>
+    </a>
+    <div class="cta-row">
+      <a class="btn btn-green" href="neutralite.html">Calculer ma neutralité plastique →</a>
+      <a class="btn btn-outline" href="https://calendly.com/badierjf/30min" target="_blank" rel="noopener">Réserver un échange</a>
+    </div>
   </div>
+</header>
 
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/DYfC5sywTFY?si=GmnHcdW1CjMT0St1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!-- CHIFFRES -->
+<div class="facts">
+  <div class="wrap">
+    <h1><em>460 millions de tonnes</em> de plastique produites chaque année dans le monde.</h1>
+    <h2>Soit l'équivalent d'un camion-benne de déchets plastiques déversé toutes les minutes, dans les océans.</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">1 / min</div><div class="lbl">un camion-benne de plastique dans les océans</div></div>
+      <div class="stat"><div class="num">400 ans</div><div class="lbl">pour que certains plastiques disparaissent</div></div>
+      <div class="stat"><div class="num">2019</div><div class="lbl">je suis le projet en Thaïlande depuis 2019</div></div>
+    </div>
   </div>
+</div>
 
-  <div class="center">
-    <p>Certains plastiques mettent plus de 400 ans à disparaître. On en retrouve aujourd'hui dans le sang humain. Depuis 2019 j'accompagne un projet qui transforme ce plastique en carburant, en Thaïlande. Seul, on regarde le problème. À plusieurs, on peut le réduire : chaque pack de dépollution financé retire du plastique réel, mesuré, tracé.</p>
-    <a class="btn" href="https://calendly.com/badierjf/30min" target="_blank" rel="noopener">Réserver un échange</a>
+<!-- VIDÉO + TEXTE -->
+<section>
+  <div class="wrap">
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/DYfC5sywTFY?si=GmnHcdW1CjMT0St1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <div class="story">
+      <p>Certains plastiques mettent plus de 400 ans à disparaître. On en retrouve aujourd'hui dans le sang humain.</p>
+      <p>Depuis 2019 j'accompagne un projet qui transforme ce plastique en carburant, en Thaïlande.</p>
+      <p class="punch">Seul, on regarde le problème. À plusieurs, on peut le réduire.</p>
+      <p>Chaque pack de dépollution financé retire du plastique réel, mesuré, tracé.</p>
+    </div>
   </div>
+</section>
 
+<!-- QUI JE SUIS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="me">
+      <img src="jfb-photo.jpg" alt="Jean-François" loading="lazy">
+      <div>
+        <h3>Jean-François</h3>
+        <span class="tag">Papyboomer actif</span>
+        <p>40 ans en informatique, 30 ans en marketing de réseau. Je me suis déjà fait avoir par de belles promesses. Maintenant je vérifie. Et je ne parle que de ce que j'ai vérifié.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="final">
+  <div class="wrap cta-row">
+    <a class="btn btn-green" href="neutralite.html">Découvre ta neutralité plastique →</a>
+  </div>
 </div>
 
 <footer>Transformer la planète — Pour un avenir sans plastique · <a href="/corsairconnect/confidentialite">Politique de confidentialité</a> · <a href="/corsairconnect/mentions-legales">Mentions légales</a></footer>
